@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Set to force version number, e.g., when no tag exists.
-      GA_VERSION: TEST-0.0.0
+      GA_VERSION: TEST-0.0.1
     outputs:
       upload_url: ${{ steps.release.outputs.upload_url }}
       GA_VERSION: ${{ env.GA_VERSION }}
