@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Set to force version number, e.g., when no tag exists.
-      GA_VERSION: TEST-0.0.3
+      GA_VERSION: TEST-0.0.4
     outputs:
       upload_url: ${{ steps.release.outputs.upload_url }}
       GA_VERSION: ${{ env.GA_VERSION }}
@@ -128,14 +128,14 @@ jobs:
         if: matrix.build == 'linux' || matrix.build == 'macos'
         run: strip "target/${{ matrix.target }}/release/git-absorb"
 
-      - name: Strip release binary (arm)
+      - name: Strip release binary (linux-arm)
         if: matrix.build == 'linux-arm'
         run: |
           docker run --rm -v \
             "$PWD/target:/target:Z" \
             rustembedded/cross:arm-unknown-linux-gnueabihf \
             arm-linux-gnueabihf-strip \
-            /target/arm-unknown-linux-gnueabihf/release/rg
+            /target/arm-unknown-linux-gnueabihf/release/git-absorb
 
       - name: list all files
         shell: bash
