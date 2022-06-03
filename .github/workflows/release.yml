@@ -16,14 +16,19 @@
 
 name: release
 on:
-  push
+  push:
+    # Enable when testing release infrastructure on a branch + set a GA_VERSION a few lines below
+    # branches:
+    # -  tummychow/work
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
 jobs:
   create-release:
     name: create-release
     runs-on: ubuntu-latest
-    env:
+#    env:
       # Set to force version number, e.g., when no tag exists.
-      GA_VERSION: TEST-0.0.4
+#      GA_VERSION: TEST-0.0.4
     outputs:
       upload_url: ${{ steps.release.outputs.upload_url }}
       GA_VERSION: ${{ env.GA_VERSION }}
